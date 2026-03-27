@@ -41,7 +41,7 @@ class PromptGenerationController extends Controller
         $safeFileName = $sanitizedName . '_' . time() .'_'.Str::random(10). '.' . $extension;
         $imagePath=$image->storeAs('uploads/images', $safeFileName,'public');
 
-        $this->openAIService->generatePromptForImage($image);
+        //$this->openAIService->generatePromptForImage($image);
          $generatedPrompt = $this->openAIService->generatePromptForImage($image);
          $promptGeneration= $user->PromptGenerations()->create([
             'generated_prompt' => $generatedPrompt,
