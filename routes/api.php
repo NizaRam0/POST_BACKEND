@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\PostController;
 use function Ramsey\Uuid\v1;
+use App\Http\Controllers\Api\V1\ImageGenerationController;
  
 Route::middleware(['auth:sanctum','throttle:api'])->group(function () {
     Route::get('/user', function (Request $request) {
@@ -11,7 +12,11 @@ Route::middleware(['auth:sanctum','throttle:api'])->group(function () {
     });
         Route::prefix('v1')->group(function(){
     Route::apiResource('posts',PostController::class);
+   
+    Route::apiResource('image-generations', ImageGenerationController::class)
+    ->only(['index', 'store']);
 });
+
     
 });
 
